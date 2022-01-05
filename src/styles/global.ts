@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -24,18 +24,23 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  body {
-    font-size: 1.6rem;
-  }
+  ${({ theme }) => css`
+    body {
+      font-size: 1.6rem;
+      background-color: ${theme.colors.mainBg};
+    }
 
-  body, input, textarea, button {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-  }
+    body, input, textarea, button {
+      font-family: ${theme.font.family};
+      font-weight: ${theme.font.weight.medium};
+    }
 
-  h1, h2, h3, h4, h5, h6, strong {
-    font-weight: 600;
-  }
+    h1, h2, h3, h4, h5, h6, strong {
+      font-weight: ${theme.font.weight.semiBold};
+    }
+  `}
+
+
 
   button {
     cursor: pointer;
