@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 const Login = lazy(() => import('pages/login'))
 const Home = lazy(() => import('pages/home'))
 const PageAppTemplate = lazy(() => import('pages/page-app-template'))
+const VehiclesPage = lazy(() => import('pages/vehicles'))
 
 export const App = () => {
   return (
@@ -13,7 +14,7 @@ export const App = () => {
         <Route path='/app' element={<PageAppTemplate />}>
           <Route index element={<Home />} />
           <Route path='employees' element={<h1>Employees</h1>} />
-          <Route path='vehicles' element={<h1>Vehicles</h1>} />
+          <Route path='vehicles' element={<VehiclesPage />} />
           <Route path='reserved-sold' element={<h1>Reserved and sold</h1>} />
         </Route>
       </Routes>
