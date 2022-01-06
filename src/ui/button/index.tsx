@@ -6,11 +6,17 @@ export type ButtonProps = {
   fullWidth?: boolean
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-export const Button = ({ withIcon, fullWidth, children }: ButtonProps) => {
+export const Button = ({
+  withIcon,
+  fullWidth,
+  children,
+  ...props
+}: ButtonProps) => {
   return (
     <S.Wrapper
       withIcon={!!withIcon}
       fullWidth={!!fullWidth}
+      {...props}
     >
       {children}
       {!!withIcon && <span>{withIcon}</span>}

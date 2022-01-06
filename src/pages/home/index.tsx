@@ -1,5 +1,5 @@
+import { useNavigate } from 'react-router-dom'
 import { Header } from 'layout'
-
 import * as S from './styles'
 
 import carImg from 'assets/imgs/car.jpg'
@@ -15,6 +15,7 @@ const cards = [
     total: '147 veículos',
     heroSrc: carImg,
     heroAlt: 'Imagem de um carro',
+    slug: 'reserved-sold',
   },
   {
     title: 'Listagem geral de veículos',
@@ -22,6 +23,7 @@ const cards = [
     total: '180 veículos',
     heroSrc: carsImg,
     heroAlt: 'Imagem com alguns carros',
+    slug: 'vehicles',
   },
   {
     title: 'Funcionários da empresa',
@@ -29,10 +31,12 @@ const cards = [
     total: '147 funcionários',
     heroSrc: employeeImg,
     heroAlt: 'Imagem de um funcionário da empresa',
+    slug: 'employees',
   },
 ]
 
 const Home = () => {
+  const navigate = useNavigate()
   return (
     <>
       <Header />
@@ -42,7 +46,7 @@ const Home = () => {
 
         <S.Content>
           {cards.map((card, index) => (
-            <S.Card key={index}>
+            <S.Card key={index} onClick={() => navigate(card.slug)}>
               <S.CardContent>
                 <S.CardTitle>{card.title}</S.CardTitle>
                 <S.CardDescription>{card.description}</S.CardDescription>

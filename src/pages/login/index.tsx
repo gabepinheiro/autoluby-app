@@ -1,10 +1,12 @@
+import { useNavigate } from 'react-router-dom'
 import { Button, Logo } from 'ui'
+import * as S from './styles'
 
 import carBg from 'assets/imgs/car-login.jpg'
 
-import * as S from './styles'
-
 const Login = () => {
+  const navigate = useNavigate()
+
   return (
     <S.Wrapper>
       <S.WelcomeContent>
@@ -32,10 +34,18 @@ const Login = () => {
               <a href='#test'>Esqueceu senha?</a>
             </S.RadioGroup>
 
-            <Button type='button' fullWidth>Entrar</Button>
+            <Button
+              type='button'
+              fullWidth
+              onClick={() => navigate('/app')}
+            >
+              Entrar
+            </Button>
           </S.Form>
 
-          <S.Text>Ainda não tem uma conta? <a href='#test'>Criar Conta</a></S.Text>
+          <S.Text>
+            Ainda não tem uma conta? <a href='#test'>Criar Conta</a>
+          </S.Text>
         </S.Content>
       </S.WelcomeContent>
       <img src={carBg} alt='Imagem de carro azul' />
