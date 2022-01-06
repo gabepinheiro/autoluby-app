@@ -38,6 +38,16 @@ export const Card = styled.article`
     & + & {
       margin-top: 2.0rem;
     }
+
+    transition: all 0.2s;
+    backface-visibility: hidden;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.03);
+      box-shadow: ${theme.shadows.medium};
+      border-color: ${theme.colors.primary};
+    }
   `}
 `
 
