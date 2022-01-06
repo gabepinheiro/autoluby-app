@@ -1,18 +1,17 @@
+import { LayoutPage } from 'layout/layout-page'
 import { Table } from 'shared/table'
-import * as S from './styles'
 
 import { vehicles } from './mock'
 
 const VehiclesPage = () => {
   return (
-    <S.Wrapper>
-      <S.Heading>Todos Veículos</S.Heading>
+    <LayoutPage heading='Todos Veículos'>
       <Table
         title='Listagem geral de veículos'
         type='vehicle'
         data={vehicles}
       />
-    </S.Wrapper>
+    </LayoutPage>
   )
 }
 

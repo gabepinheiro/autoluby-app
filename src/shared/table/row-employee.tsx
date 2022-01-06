@@ -1,4 +1,4 @@
-import { Employee} from 'resources/types'
+import { Employee } from 'resources/types'
 
 type RowEmployeeProps = {
   employee: Employee

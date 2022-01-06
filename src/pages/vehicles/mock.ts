@@ -1,4 +1,4 @@
-import { Vehicle } from 'resources/types';
+import { Vehicle } from 'resources/types'
 
 export const vehicles: Vehicle[] =
   [
@@ -52,4 +52,4 @@ export const vehicles: Vehicle[] =
       chassi: '2FTDF18W5VCA88039',
       value: 100000,
     },
-]
+  ]
