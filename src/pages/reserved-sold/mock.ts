@@ -1,0 +1,88 @@
+import { Vehicle } from 'resources/types'
+
+const vehicles: Vehicle[] = [
+  {
+    brand: 'Volkswagen',
+    model: 'Gol',
+    yer: '2004',
+    km: 150000,
+    color: 'Vermelho',
+    status: 'Vendido',
+    chassi: 'KNDPBCA25B7076883',
+    value: 13000,
+  },
+  {
+    brand: 'Fiat',
+    model: 'Marea',
+    yer: '1994',
+    km: 2400000,
+    color: 'Prata',
+    status: 'Reservado',
+    chassi: '3B7KF23Z91G223647',
+    value: 8000,
+  },
+  {
+    brand: 'KIA',
+    model: 'Sorento',
+    yer: '2014',
+    km: 50000,
+    color: 'preto',
+    status: 'Vendido',
+    chassi: '5XYKUDA21DG367493',
+    value: 20000,
+  },
+  {
+    brand: 'Volkswagen',
+    model: 'Fusca',
+    yer: '1970',
+    km: 900000,
+    color: 'rosa',
+    status: 'Disponível',
+    chassi: 'JH4KA4630JC008595',
+    value: 80000,
+  },
+  {
+    brand: 'Volkswagen',
+    model: 'Fusca',
+    yer: '2020',
+    km: 10000,
+    color: 'Preto',
+    status: 'Vendido',
+    chassi: '2FTDF18W5VCA88039',
+    value: 100000,
+  },
+  {
+    brand: 'Volkswagen',
+    model: 'Kombi',
+    yer: '1980',
+    km: 908090,
+    color: 'branco',
+    status: 'Reservado',
+    chassi: 'JH4KA3250KC009863',
+    value: 5000,
+  },
+  {
+    brand: 'Kia',
+    model: 'Cerato Koup',
+    yer: '2012',
+    km: 150000,
+    color: 'vermelho',
+    status: 'Disponível',
+    chassi: 'JTMWF4DV8C5047998',
+    value: 50000,
+  },
+  {
+    brand: 'Toyota',
+    model: 'Bandeirante',
+    yer: '1958',
+    km: 150000,
+    color: 'verde',
+    status: 'Vendido',
+    chassi: '1B7HF16Y8TS510206',
+    value: 3000,
+  },
+]
+
+export const reservedSold = vehicles.filter(vehicle => {
+  return ['Reservado', 'Vendido'].includes(vehicle.status)
+})
