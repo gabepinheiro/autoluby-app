@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-import { Header } from 'layout'
 import * as S from './styles'
 
 import carImg from 'assets/imgs/car.jpg'
@@ -39,7 +38,6 @@ const Home = () => {
   const navigate = useNavigate()
   return (
     <>
-      <Header />
       <S.Wrapper>
         <S.Heading>Bem vindo, {username}</S.Heading>
         <S.Text>Menu</S.Text>
