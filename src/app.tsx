@@ -1,9 +1,11 @@
-import { Header } from 'layout'
+import { lazy, Suspense } from 'react'
+
+const Login = lazy(() => import('pages/login'))
 
 export const App = () => {
   return (
-    <>
-      <Header />
-    </>
+    <Suspense fallback={<p>Loading...</p>}>
+      <Login />
+    </Suspense>
   )
 }

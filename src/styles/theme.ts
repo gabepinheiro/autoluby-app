@@ -18,7 +18,7 @@ export const theme = {
     black100: '#495057',
     black200: '#3C3C3C',
 
-    mainBg: '#E5E5E5',
+    mainBg: '#fff',
   },
 
   font: {
