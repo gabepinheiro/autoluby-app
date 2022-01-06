@@ -5,6 +5,7 @@ const Login = lazy(() => import('pages/login'))
 const Home = lazy(() => import('pages/home'))
 const PageAppTemplate = lazy(() => import('pages/page-app-template'))
 const VehiclesPage = lazy(() => import('pages/vehicles'))
+const EmployeesPage = lazy(() => import('pages/employees'))
 
 export const App = () => {
   return (
@@ -13,7 +14,7 @@ export const App = () => {
         <Route index element={<Login />} />
         <Route path='/app' element={<PageAppTemplate />}>
           <Route index element={<Home />} />
-          <Route path='employees' element={<h1>Employees</h1>} />
+          <Route path='employees' element={<EmployeesPage />} />
           <Route path='vehicles' element={<VehiclesPage />} />
           <Route path='reserved-sold' element={<h1>Reserved and sold</h1>} />
         </Route>
