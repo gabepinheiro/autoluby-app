@@ -1,16 +1,17 @@
 import { useNavigate } from 'react-router-dom'
+import { useUserAuth } from 'contexts/user-auth'
 import * as S from './styles'
 
 import { cards } from './card-mock'
 
-const username = 'Gabe'
-
 const Home = () => {
+  const { user } = useUserAuth()
   const navigate = useNavigate()
+
   return (
     <>
       <S.Wrapper>
-        <S.Heading>Bem vindo, {username}</S.Heading>
+        <S.Heading>Bem vindo, {user?.name}</S.Heading>
         <S.Text>Menu</S.Text>
 
         <S.Content>
