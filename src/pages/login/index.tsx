@@ -21,15 +21,17 @@ const Login = () => {
     setPassword(e.target.value)
   }
 
-  const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    login({
+    const response = await login({
       email,
       password,
-      token: 'token123',
-      name: 'Gabriel',
     })
+
+    if (response.error) {
+      return
+    }
 
     navigate('/app')
   }

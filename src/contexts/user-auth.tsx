@@ -1,16 +1,56 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useState,
+} from 'react'
 
-type User = {
-  name: string
+import { Employee, Vehicle } from 'resources/types'
+
+import { post } from 'services/api'
+
+type User = Pick<Employee, keyof Employee> & {
+  vehicles: Vehicle[]
+}
+
+type AuthResponseData = {
+  message: string
+  token: string
+  totalEmployees: number
+  totalVehicles: number
+  totalVehiclesLoggedUser: number
+  user: User
+}
+
+type ErrorResponseData = {
+  error: boolean
+  message: string
+}
+
+type Response = AuthResponseData | ErrorResponseData
+
+const isErrorResponseData = (data: Response): data is ErrorResponseData => {
+  return (data as ErrorResponseData).error !== undefined
+}
+
+type Login = {
   email: string
   password: string
-  token: string
+}
+
+type AutoLuby = {
+  totalEmployees: number
+  totalVehicles: number
+  totalVehiclesLoggedUser: number
 }
 
 type UserAuthState = {
+  message: string
+  token: string
   user: User | undefined
-  isLoggedIn: boolean,
-  login: (user: User) => void
+  autoluby: AutoLuby
+  isLoggedIn: boolean
+  login: (login: Login) => Promise<{error: boolean}>
   logout: () => void
 }
 
@@ -21,12 +61,22 @@ type UserAuthProviderProps = {
 const UserAuth = createContext<UserAuthState | undefined>(undefined)
 
 export const UserAuthProvider = ({ children }: UserAuthProviderProps) => {
-  const [user, setUser] = useState<User>()
+  const [authData, setAuthData] = useState<AuthResponseData>(
+    {} as AuthResponseData)
+
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  const login = (user: User) => {
-    setUser(user)
+  const login = async (login: Login) => {
+    const data: Response = await post<Login>('/login', login)
+
+    if (isErrorResponseData(data)) {
+      return { error: true }
+    }
+
+    setAuthData(data)
     setIsLoggedIn(true)
+
+    return { error: false }
   }
 
   const logout = () => {
@@ -34,7 +84,14 @@ export const UserAuthProvider = ({ children }: UserAuthProviderProps) => {
   }
 
   const value = {
-    user,
+    message: authData.message,
+    user: authData.user,
+    token: authData.token,
+    autoluby: {
+      totalEmployees: authData.totalEmployees,
+      totalVehicles: authData.totalVehicles,
+      totalVehiclesLoggedUser: authData.totalVehiclesLoggedUser,
+    },
     isLoggedIn,
     login,
     logout,
