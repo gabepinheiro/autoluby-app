@@ -1,11 +1,42 @@
-import { useNavigate } from 'react-router-dom'
+import { useState, FormEvent, ChangeEvent } from 'react'
+import { useNavigate, Navigate } from 'react-router-dom'
+import { useUserAuth } from 'contexts/user-auth'
 import { Button, Logo } from 'ui'
 import * as S from './styles'
 
 import carBg from 'assets/imgs/car-login.jpg'
 
 const Login = () => {
+  const { isLoggedIn, login } = useUserAuth()
   const navigate = useNavigate()
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value)
+  }
+
+  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value)
+  }
+
+  const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    login({
+      email,
+      password,
+      token: 'token123',
+      name: 'Gabriel',
+    })
+
+    navigate('/app')
+  }
+
+  if (isLoggedIn) {
+    return <Navigate to='/app' />
+  }
 
   return (
     <S.Wrapper>
@@ -17,14 +48,26 @@ const Login = () => {
           <S.Heading>Bem-vindo à AutoLuby</S.Heading>
           <S.SubHeading>Faça login para acessar sua conta.</S.SubHeading>
 
-          <S.Form onSubmit={(e) => e.preventDefault()}>
+          <S.Form onSubmit={handleSubmit}>
             <S.FormGroup>
               <label htmlFor='email'>Endereço de email:</label>
-              <input type='text' id='email' placeholder='name@email.com' />
+              <input
+                type='text'
+                id='email'
+                placeholder='name@email.com'
+                value={email}
+                onChange={handleChangeEmail}
+              />
             </S.FormGroup>
             <S.FormGroup>
               <label htmlFor='senha'>Senha:</label>
-              <input type='text' id='senha' placeholder='senha' />
+              <input
+                type='password'
+                id='senha'
+                placeholder='senha'
+                value={password}
+                onChange={handleChangePassword}
+              />
             </S.FormGroup>
 
             <S.RadioGroup>
@@ -34,11 +77,7 @@ const Login = () => {
               <a href='#test'>Esqueceu senha?</a>
             </S.RadioGroup>
 
-            <Button
-              type='button'
-              fullWidth
-              onClick={() => navigate('/app')}
-            >
+            <Button type='submit' fullWidth>
               Entrar
             </Button>
           </S.Form>
