@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components'
+import { StatusCar } from 'resources/types'
+import styled, { css, DefaultTheme } from 'styled-components'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
@@ -48,5 +49,40 @@ export const Table = styled.table`
       font-weight: ${theme.font.weight.medium};
     }
   `}
+`
 
+type StatusProps = {
+  status: StatusCar
+}
+
+const StatusModifiers = {
+  Vendido: (theme: DefaultTheme) => css`
+    color: ${theme.colors.primary};
+    background-color: #F54A4833;
+  `,
+  Reservado: (theme: DefaultTheme) => css`
+    color: ${theme.colors.secondary};
+    background-color: #FAC12F33;
+  `,
+  Disponível: (theme: DefaultTheme) => css`
+    color: ${theme.colors.green};
+    background-color: #34C38F33;
+  `,
+}
+
+export const Status = styled.span<StatusProps>`
+  ${({ theme, status }) => css`
+    height: 3.0rem;
+    width: 10.2rem;
+
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.6rem;
+    font-weight: ${theme.font.weight.medium};
+    border-radius: ${theme.border.radius};
+
+    ${!!status && StatusModifiers[status](theme)};
+  `}
 `
