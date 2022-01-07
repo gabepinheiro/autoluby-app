@@ -2,8 +2,11 @@ import {
   createContext,
   ReactNode,
   useContext,
+  useEffect,
   useState,
 } from 'react'
+
+import localforage from 'localforage'
 
 import { Employee, Vehicle } from 'resources/types'
 
@@ -66,6 +69,21 @@ export const UserAuthProvider = ({ children }: UserAuthProviderProps) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
+  useEffect(() => {
+    async function getAuthStorage () {
+      const authStorage = await localforage.getItem<AuthResponseData>('@autoluby:auth')
+
+      if (!authStorage) {
+        return
+      }
+
+      setAuthData(authStorage)
+      setIsLoggedIn(true)
+    }
+
+    getAuthStorage()
+  }, [])
+
   const login = async (login: Login) => {
     const data: Response = await post<Login>('/login', login)
 
@@ -75,6 +93,8 @@ export const UserAuthProvider = ({ children }: UserAuthProviderProps) => {
 
     setAuthData(data)
     setIsLoggedIn(true)
+
+    localforage.setItem('@autoluby:auth', data)
 
     return { error: false }
   }
