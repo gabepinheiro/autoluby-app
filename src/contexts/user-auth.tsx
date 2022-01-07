@@ -101,6 +101,7 @@ export const UserAuthProvider = ({ children }: UserAuthProviderProps) => {
 
   const logout = () => {
     setIsLoggedIn(false)
+    localforage.removeItem('@autoluby:auth')
   }
 
   const value = {
