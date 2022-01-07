@@ -5,8 +5,14 @@ import * as S from './styles'
 import { cards } from './card-mock'
 
 const Home = () => {
-  const { user } = useUserAuth()
+  const { user, autoluby } = useUserAuth()
   const navigate = useNavigate()
+
+  const totals = {
+    employees: autoluby.totalEmployees,
+    vehicles: autoluby.totalVehicles,
+    'reserved-sold': user?.vehicles?.length,
+  }
 
   return (
     <>
@@ -20,7 +26,7 @@ const Home = () => {
               <S.CardContent>
                 <S.CardTitle>{card.title}</S.CardTitle>
                 <S.CardDescription>{card.description}</S.CardDescription>
-                <S.Total>{card.total}</S.Total>
+                <S.Total>{totals[card.slug]}</S.Total>
               </S.CardContent>
               <S.CardHero
                 src={card.heroSrc}

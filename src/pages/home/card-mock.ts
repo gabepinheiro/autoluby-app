@@ -8,7 +8,7 @@ type Card = {
   total: string
   heroSrc: string
   heroAlt: string
-  slug: string
+  slug: 'employees' | 'vehicles' | 'reserved-sold'
 }
 
 export const cards: Card[] = [
