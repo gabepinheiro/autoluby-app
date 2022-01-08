@@ -12,7 +12,10 @@ export const Wrapper = styled.div`
   `}
 `
 
-export const Header = styled.div``
+export const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
 
 export const TableTitle = styled.h2`
   ${({ theme }) => css`

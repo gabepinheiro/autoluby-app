@@ -2,6 +2,7 @@ import { Vehicle, Employee } from 'resources/types'
 import { TableBody } from './table-body'
 import { TableHead } from './table-head'
 import * as S from './styles'
+import { Pagination } from 'shared/pagination'
 
 export type TableData = Vehicle[] | Employee[]
 
@@ -18,6 +19,7 @@ export const Table = ({ title, type, data }: TableProps) => {
     <S.Wrapper>
       <S.Header>
         <S.TableTitle>{title}</S.TableTitle>
+        <Pagination />
       </S.Header>
 
       <S.Table>
