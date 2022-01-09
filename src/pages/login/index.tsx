@@ -40,7 +40,7 @@ const Login = () => {
   const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (statusInputEmail === 'invalid' || statusInputEmail === 'empty') {
+    if (statusInputEmail === 'invalid' || statusInputEmail === 'empty' || !password.length) {
       setStatusInputEmail('invalid')
       return
     }
@@ -93,7 +93,6 @@ const Login = () => {
                 id='senha'
                 placeholder='senha'
                 required
-                minLength={6}
                 value={password}
                 onChange={handleChangePassword}
               />
