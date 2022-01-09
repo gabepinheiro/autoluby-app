@@ -30,6 +30,7 @@ const request = (url: string, options?: RequestInit) =>
 
       return response.json()
     })
+    .catch(e => ({ error: true, message: e.message }))
 
 type CreateRequest = (method: Methods) => (route: string)
    => (data?: any, noPaginate?: boolean, params?: Params) => Promise<any>
