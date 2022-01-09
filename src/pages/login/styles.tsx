@@ -53,7 +53,7 @@ export const SubHeading = styled.h2`
 `
 
 export const Form = styled.form`
-  margin-top: 7rem;
+    margin-top: 7rem;
 `
 
 export const FormGroup = styled.div`
@@ -61,7 +61,6 @@ export const FormGroup = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
-
 
     &:not(:last-child) {
         margin-bottom: 3rem;
@@ -72,17 +71,20 @@ export const FormGroup = styled.div`
       color: ${theme.colors.black450};
       font-weight: ${theme.font.weight.semiBold};
     }
+  `}
+`
 
-    input {
-      border: ${theme.border.sizes.small} solid ${theme.colors.gray200};
-      display: inline-block;
-      height: 3.6rem;
-      border-radius: ${theme.border.radius};
-      background-color: ${theme.colors.gray100};
-      color: ${theme.colors.gray300};
-      padding: 1.6rem;
-      font-weight: ${theme.font.weight.normal};
-    }
+export const Input = styled.input`
+  ${({ theme }) => css`
+    border: ${theme.border.sizes.small} solid ${theme.colors.gray200};
+    display: inline-block;
+    height: 3.6rem;
+    border-radius: ${theme.border.radius};
+    background-color: ${theme.colors.gray100};
+    color: ${theme.colors.gray300};
+    padding: 1.6rem;
+    font-weight: ${theme.font.weight.normal};
+    outline: 0;
   `}
 `
 

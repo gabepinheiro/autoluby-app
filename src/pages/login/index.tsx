@@ -9,7 +9,6 @@ import carBg from 'assets/imgs/car-login.jpg'
 const Login = () => {
   const { isLoggedIn, login } = useUserAuth()
   const navigate = useNavigate()
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -53,20 +52,25 @@ const Login = () => {
           <S.Form onSubmit={handleSubmit}>
             <S.FormGroup>
               <label htmlFor='email'>Endereço de email:</label>
-              <input
-                type='text'
+              <S.Input
+                type='email'
                 id='email'
-                placeholder='name@email.com'
+                name='email'
+                placeholder='name@email.com.br'
+                title='Informe o email com formato: exemplo@exemplo.com.br'
+                required
                 value={email}
                 onChange={handleChangeEmail}
               />
             </S.FormGroup>
             <S.FormGroup>
               <label htmlFor='senha'>Senha:</label>
-              <input
+              <S.Input
                 type='password'
                 id='senha'
                 placeholder='senha'
+                required
+                minLength={5}
                 value={password}
                 onChange={handleChangePassword}
               />
