@@ -11,15 +11,20 @@ const ButtonModifiers = {
   fullWidth: () => css`
     width: 100%;
   `,
+
+  reverse: () => css`
+    flex-direction: row-reverse;
+  `,
 }
 
 type WrapperProps = {
   withIcon?: boolean
   fullWidth?: boolean
+  reverse: boolean
 }
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, withIcon, fullWidth }) => css`
+  ${({ theme, withIcon, fullWidth, reverse }) => css`
     background-color: ${theme.colors.primary};
     border: 0;
     border-radius: ${theme.border.radius};
@@ -36,6 +41,7 @@ export const Wrapper = styled.button<WrapperProps>`
 
     ${withIcon && ButtonModifiers.withIcon()}
     ${fullWidth && ButtonModifiers.fullWidth()}
+    ${reverse && ButtonModifiers.reverse()}
 
     transition: background-color 0.2s, border 0.2s;
 
