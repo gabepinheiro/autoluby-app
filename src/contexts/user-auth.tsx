@@ -10,13 +10,13 @@ import { getItem, setItem, removeItem } from 'storage'
 
 import { Employee, Vehicle } from 'resources/types'
 
-import { post } from 'services/api'
+import { ErrorResponseData, post } from 'services/api'
 
 type User = Pick<Employee, keyof Employee> & {
   vehicles: Vehicle[]
 }
 
-type AuthResponseData = {
+export type AuthResponseData = {
   message: string
   token: string
   totalEmployees: number
@@ -25,18 +25,13 @@ type AuthResponseData = {
   user: User
 }
 
-type ErrorResponseData = {
-  error: boolean
-  message: string
-}
-
 type Response = AuthResponseData | ErrorResponseData
 
-const isErrorResponseData = (data: Response): data is ErrorResponseData => {
+export const isErrorResponseData = (data: Response): data is ErrorResponseData => {
   return (data as ErrorResponseData).error !== undefined
 }
 
-type Login = {
+export type Login = {
   email: string
   password: string
 }
@@ -85,7 +80,7 @@ export const UserAuthProvider = ({ children }: UserAuthProviderProps) => {
   }, [])
 
   const login = async (login: Login) => {
-    const data: Response = await post<Login>('/login', login)
+    const data: Response = await post('/login', login)
 
     if (isErrorResponseData(data)) {
       return { error: true }

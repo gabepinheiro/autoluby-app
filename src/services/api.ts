@@ -1,4 +1,12 @@
-type Methods = 'POST'
+import { getItem } from 'storage'
+import { AuthResponseData } from 'contexts/user-auth'
+
+type Methods = 'GET' | 'POST'
+
+export type ErrorResponseData = {
+  error: boolean
+  message: string
+}
 
 const baseURL = process.env.REACT_APP_BASEURL
 
@@ -13,18 +21,36 @@ const request = (url: string, options?: RequestInit) =>
 
       return response.json()
     })
-    .catch(e => ({ error: true, message: e.message }))
 
 const createRequest = (method: Methods) =>
-  <T>(route: string, data: T, token?: string) =>
-    request(baseURL + route, {
+  async (route: string, data?: any) => {
+    const auth = await getItem<AuthResponseData>('@autoluby:auth')
+
+    return request(baseURL + route, {
       method,
       headers: {
         'content-type': 'application/json',
-        authorization: token ?? '',
+        authorization: `Bearer ${auth?.token}`,
       },
       body: JSON.stringify(data),
     })
+  }
 
-export const get = request
+const get = createRequest('GET')
+
+type GetVehicles = (
+  noPaginate: boolean,
+  params: {
+    page: number
+  }
+) => Promise<any>
+
+export const getVehicles: GetVehicles = (noPaginate = false, params) => {
+  const route = `/vehicles?${noPaginate
+    ? 'noPaginate'
+    : `page=${params.page}`}`
+
+  return get(route)
+}
+
 export const post = createRequest('POST')
