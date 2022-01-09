@@ -38,6 +38,19 @@ export const GlobalStyle = createGlobalStyle`
     h1, h2, h3, h4, h5, h6, strong {
       font-weight: ${theme.font.weight.semiBold};
     }
+
+    #nprogress .bar {
+      background: ${theme.colors.primary} !important;
+    }
+
+    #nprogress .peg {
+      box-shadow: 0 0 10px ${theme.colors.primary}, 0 0 5px ${theme.colors.primary} !important;
+    }
+
+    #nprogress .spinner-icon {
+      border-top-color: ${theme.colors.primary};
+      border-left-color: ${theme.colors.primary};
+    }
   `}
 
 
