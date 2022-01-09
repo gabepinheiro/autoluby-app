@@ -20,7 +20,7 @@ const VehiclesPage = () => {
   useEffect(() => {
     const fetch = async () => {
       setIsFetching(true)
-      const data = await getVehicles(false, {
+      const data = await getVehicles(null, false, {
         page: currentPage + 1,
       })
 

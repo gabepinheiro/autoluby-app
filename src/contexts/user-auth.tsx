@@ -10,7 +10,7 @@ import { getItem, setItem, removeItem } from 'storage'
 
 import { Employee, Vehicle } from 'resources/types'
 
-import { ErrorResponseData, post } from 'services/api'
+import { ErrorResponseData, getLogin } from 'services/api'
 
 type User = Pick<Employee, keyof Employee> & {
   vehicles: Vehicle[]
@@ -80,7 +80,7 @@ export const UserAuthProvider = ({ children }: UserAuthProviderProps) => {
   }, [])
 
   const login = async (login: Login) => {
-    const data: Response = await post('/login', login)
+    const data: Response = await getLogin(login)
 
     if (isErrorResponseData(data)) {
       return { error: true }

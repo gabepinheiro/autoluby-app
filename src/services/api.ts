@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { getItem } from 'storage'
 import { AuthResponseData } from 'contexts/user-auth'
 
@@ -10,7 +11,6 @@ export type ErrorResponseData = {
 
 const baseURL = process.env.REACT_APP_BASEURL
 
-// eslint-disable-next-line no-undef
 const request = (url: string, options?: RequestInit) =>
   fetch(url, options)
     .then(async (response) => {
@@ -22,35 +22,45 @@ const request = (url: string, options?: RequestInit) =>
       return response.json()
     })
 
-const createRequest = (method: Methods) =>
-  async (route: string, data?: any) => {
+type Params = {
+  page?: number
+}
+
+type CreateRequest = (method: Methods) => (route: string)
+   => (data?: any, noPaginate?: boolean, params?: Params) => Promise<any>
+
+const createRequest: CreateRequest = (method) => (route) =>
+  async (data, noPaginate, params) => {
+    const routeWithParams = `${route}?${noPaginate
+    ? 'noPaginate'
+    : `page=${params?.page}`}`
+
     const auth = await getItem<AuthResponseData>('@autoluby:auth')
 
-    return request(baseURL + route, {
+    let options: RequestInit = {
       method,
       headers: {
         'content-type': 'application/json',
         authorization: `Bearer ${auth?.token}`,
       },
-      body: JSON.stringify(data),
+    }
+
+    if (method === 'POST') {
+      options = {
+        ...options,
+        body: JSON.stringify(data),
+      }
+    }
+
+    return request(baseURL + (method === 'POST' ? route : routeWithParams), {
+      ...options,
     })
   }
 
 const get = createRequest('GET')
 
-type GetVehicles = (
-  noPaginate: boolean,
-  params: {
-    page: number
-  }
-) => Promise<any>
-
-export const getVehicles: GetVehicles = (noPaginate = false, params) => {
-  const route = `/vehicles?${noPaginate
-    ? 'noPaginate'
-    : `page=${params.page}`}`
-
-  return get(route)
-}
-
 export const post = createRequest('POST')
+
+export const getLogin = post('/login')
+
+export const getVehicles = get('/vehicles')
