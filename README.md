@@ -19,11 +19,11 @@
 
 ## 💻 Sobre o projeto.
 
-Teste técnico do [Programa de Talentos](https://luby.com.br/labluby//) da [LabLuby](https://luby.com.br/labluby//) que consiste na criação de um sistema para gerenciamento de uma loja que realiza venda de veículos.
+Teste técnico do [Programa de Talentos](https://luby.com.br/labluby/) da [Luby Software](https://luby.com.br) que consiste na criação de um sistema para gerenciamento de uma loja que realiza venda de veículos.
 
 Demonstração do app: [AutoLuby App](https://gabe-autoluby.netlify.app/).
 
-Conheça mais sobre o programa de talentos - [LabLuby](https://luby.com.br/labluby//)
+Conheça mais sobre o programa de talentos - [LabLuby](https://luby.com.br/labluby/)
 
 ## 🚀 Como executar o projeto.
 
