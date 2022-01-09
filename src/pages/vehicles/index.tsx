@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { Navigate } from 'react-router-dom'
 import { LayoutPage } from 'layout/layout-page'
 import { Vehicle } from 'resources/types'
+import { useUserAuth } from 'contexts/user-auth'
 import { Data, getVehicles } from 'services/api'
 import { usePagination } from 'hooks/use-pagination'
 import { Table } from 'shared/table'
@@ -8,11 +10,14 @@ import { Table } from 'shared/table'
 // import { vehicles } from './mock'
 
 const VehiclesPage = () => {
+  const { isLoggedIn } = useUserAuth()
   const { currentPage, perPage, handleChangePage } = usePagination()
   const [data, setData] = useState<Data<Vehicle[]>>()
   const [isFetching, setIsFetching] = useState(false)
 
   useEffect(() => {
+    if (!isLoggedIn) return
+
     const fetch = async () => {
       setIsFetching(true)
       const data = await getVehicles(null, false, {
@@ -27,7 +32,11 @@ const VehiclesPage = () => {
     }
 
     fetch()
-  }, [currentPage])
+  }, [currentPage, isLoggedIn])
+
+  if (!isLoggedIn) {
+    return <Navigate to='/' />
+  }
 
   return (
     <LayoutPage heading='Todos Veículos'>
