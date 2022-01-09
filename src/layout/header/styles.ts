@@ -57,3 +57,8 @@ export const InputWrapper = styled.div`
     }
   }
 `
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  gap: 1.6rem;
+`
