@@ -1,16 +1,11 @@
-import { usePagination } from 'hooks/use-pagination'
-import { LayoutPage } from 'layout/layout-page'
 import { useEffect, useState } from 'react'
+import { LayoutPage } from 'layout/layout-page'
 import { Vehicle } from 'resources/types'
-import { getVehicles } from 'services/api'
+import { Data, getVehicles } from 'services/api'
+import { usePagination } from 'hooks/use-pagination'
 import { Table } from 'shared/table'
 
 // import { vehicles } from './mock'
-
-type Data<T> = {
-  totalRecords: number
-  records: T
-}
 
 const VehiclesPage = () => {
   const { currentPage, perPage, handleChangePage } = usePagination()

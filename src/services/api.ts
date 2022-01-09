@@ -2,6 +2,8 @@
 import { getItem } from 'storage'
 import { AuthResponseData } from 'contexts/user-auth'
 
+const baseURL = process.env.REACT_APP_BASEURL
+
 type Methods = 'GET' | 'POST'
 
 export type ErrorResponseData = {
@@ -9,7 +11,14 @@ export type ErrorResponseData = {
   message: string
 }
 
-const baseURL = process.env.REACT_APP_BASEURL
+export type Params = {
+  page?: number
+}
+
+export type Data<T> = {
+  totalRecords: number
+  records: T
+}
 
 const request = (url: string, options?: RequestInit) =>
   fetch(url, options)
@@ -21,10 +30,6 @@ const request = (url: string, options?: RequestInit) =>
 
       return response.json()
     })
-
-type Params = {
-  page?: number
-}
 
 type CreateRequest = (method: Methods) => (route: string)
    => (data?: any, noPaginate?: boolean, params?: Params) => Promise<any>
@@ -58,9 +63,8 @@ const createRequest: CreateRequest = (method) => (route) =>
   }
 
 const get = createRequest('GET')
-
 export const post = createRequest('POST')
 
 export const getLogin = post('/login')
-
 export const getVehicles = get('/vehicles')
+export const getEmployees = get('/employees')
