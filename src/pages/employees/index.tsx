@@ -7,8 +7,6 @@ import { Employee } from 'resources/types'
 import { Data, getEmployees } from 'services/api'
 import { Table } from 'shared/table'
 
-// import { employees } from './mock'
-
 const EmployeesPage = () => {
   const { isLoggedIn } = useUserAuth()
   const { currentPage, perPage, handleChangePage } = usePagination()

@@ -5,8 +5,6 @@ import { usePagination } from 'hooks/use-pagination'
 import { LayoutPage } from 'layout/layout-page'
 import { Table } from 'shared/table'
 
-// import { reservedSold } from './mock'
-
 const ReservedSoldPage = () => {
   const { user, isLoggedIn } = useUserAuth()
   const { currentPage, perPage, handleChangePage } = usePagination()

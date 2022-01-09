@@ -7,8 +7,6 @@ import { Data, getVehicles } from 'services/api'
 import { usePagination } from 'hooks/use-pagination'
 import { Table } from 'shared/table'
 
-// import { vehicles } from './mock'
-
 const VehiclesPage = () => {
   const { isLoggedIn } = useUserAuth()
   const { currentPage, perPage, handleChangePage } = usePagination()
