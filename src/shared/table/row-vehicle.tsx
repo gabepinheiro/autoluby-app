@@ -1,4 +1,5 @@
 import { Vehicle } from 'resources/types'
+import { getCurrencyFormatted } from 'resources/utils'
 
 import * as S from './styles'
 
@@ -20,7 +21,7 @@ export const RowVehicle = ({ vehicle }: RowVehicleProps) => {
         </S.Status>
       </td>
       <td>{vehicle.chassi}</td>
-      <td>{vehicle.value}</td>
+      <td>{getCurrencyFormatted(vehicle.value)}</td>
     </tr>
   )
 }
