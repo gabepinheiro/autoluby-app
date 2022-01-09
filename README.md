@@ -1,46 +1,82 @@
-# Getting Started with Create React App
+<p align="center">
+  <br/>
+  <img src='https://user-images.githubusercontent.com/45916330/148701121-2000ab7b-942d-4c89-ae59-0c8d936545c5.png' />
+  <br/>
+  <br/>
+  <p align="center">
+    <img align="center" alt="HTML" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+    <img align="center" alt="CSS" src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+    <img align="center" alt="Javascript" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+    <img align="center" alt="React.Js" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+    <img align="center" alt="Styled components" src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
+    <img align="center" alt="Typescript" src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
+ </p>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br/>
 
-## Available Scripts
+# AutoLuby App
 
-In the project directory, you can run:
+## 💻 Sobre o projeto.
 
-### `yarn start`
+Teste técnico do [Programa de Talentos](https://luby.com.br/labluby//) da [LabLuby](https://luby.com.br/labluby//) que consiste na criação de um sistema para gerenciamento de uma loja que realiza venda de veículos.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Demonstração do app: [AutoLuby App](https://gabe-autoluby.netlify.app/).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Conheça mais sobre o programa de talentos - [LabLuby](https://luby.com.br/labluby//)
 
-### `yarn test`
+## 🚀 Como executar o projeto.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Pré-requisitos.
 
-### `yarn build`
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Primeiro abra o seu terminal e rode o seguinte comando para fazer o download do projeto em sua máquina:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+# Clone este repositório
+$ git clone https://github.com/gabepinheiro/autoluby
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Acesse a pasta do projeto no terminal/cmd
+$ cd autoluby
+```
 
-### `yarn eject`
+Rode o seguinte comando para instalar todas as dependências necessárias do projeto:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm install
+# or
+yarn install
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Com tudo pronto, você pode iniciar o aplicativo com:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Abrir [http://localhost:3000](http://localhost:3000) com seu navegador para ver o resultado.
 
-## Learn More
+## ⚙️Comandos.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `dev`: runs your application on `localhost:3000`.
+- `build`: creates the production build version.
+- `lint`: runs the linter in all components.
+- `lint:fix`: runs the linter to fix problems in all components.
+- `type-check`: runs the typescript to type check in all components.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🛠 Tecnologias utilizadas.
+
+- [React.js](https://pt-br.reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [styled-components](https://styled-components.com/)
+- [react-router-dom](https://reactrouter.com/)
+- [localforage](https://localforage.github.io/localForage/)
+- [react-paginate](https://github.com/AdeleD/react-paginate)
+- [ngrogress](https://github.com/rstacruz/nprogress)
+- [eslint](https://eslint.org/)
+- [husky](https://github.com/typicode/husky)
