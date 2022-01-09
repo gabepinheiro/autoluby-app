@@ -2,18 +2,35 @@ import { useState, FormEvent, ChangeEvent } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom'
 import { useUserAuth } from 'contexts/user-auth'
 import { Button, Logo } from 'ui'
+import { Status, Input } from './input'
 import * as S from './styles'
 
 import carBg from 'assets/imgs/car-login.jpg'
+
+const regexValidEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
 const Login = () => {
   const { isLoggedIn, login } = useUserAuth()
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [statusInputEmail, setStatusInputEmail] = useState<Status>('empty')
 
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value)
+    const emailValue = e.target.value
+    setEmail(emailValue)
+
+    if (!regexValidEmail.test(emailValue)) {
+      setStatusInputEmail('invalid')
+      return
+    }
+
+    if (emailValue.length === 0) {
+      setStatusInputEmail('empty')
+      return
+    }
+
+    setStatusInputEmail('check')
   }
 
   const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,6 +39,11 @@ const Login = () => {
 
   const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    if (statusInputEmail === 'invalid' || statusInputEmail === 'empty') {
+      setStatusInputEmail('invalid')
+      return
+    }
 
     const response = await login({
       email,
@@ -52,7 +74,7 @@ const Login = () => {
           <S.Form onSubmit={handleSubmit}>
             <S.FormGroup>
               <label htmlFor='email'>Endereço de email:</label>
-              <S.Input
+              <Input
                 type='email'
                 id='email'
                 name='email'
@@ -61,16 +83,17 @@ const Login = () => {
                 required
                 value={email}
                 onChange={handleChangeEmail}
+                status={statusInputEmail}
               />
             </S.FormGroup>
             <S.FormGroup>
               <label htmlFor='senha'>Senha:</label>
-              <S.Input
+              <Input
                 type='password'
                 id='senha'
                 placeholder='senha'
                 required
-                minLength={5}
+                minLength={6}
                 value={password}
                 onChange={handleChangePassword}
               />

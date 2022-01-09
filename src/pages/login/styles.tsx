@@ -74,20 +74,6 @@ export const FormGroup = styled.div`
   `}
 `
 
-export const Input = styled.input`
-  ${({ theme }) => css`
-    border: ${theme.border.sizes.small} solid ${theme.colors.gray200};
-    display: inline-block;
-    height: 3.6rem;
-    border-radius: ${theme.border.radius};
-    background-color: ${theme.colors.gray100};
-    color: ${theme.colors.gray300};
-    padding: 1.6rem;
-    font-weight: ${theme.font.weight.normal};
-    outline: 0;
-  `}
-`
-
 export const RadioGroup = styled.div`
   ${({ theme }) => css`
     display: flex;
