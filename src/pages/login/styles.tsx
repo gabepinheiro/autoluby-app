@@ -105,8 +105,12 @@ export const RadioGroup = styled.div`
   `}
 `
 
-export const Text = styled.p`
-  ${({ theme }) => css`
+type TextProps = {
+  color?: 'error'
+}
+
+export const Text = styled.p<TextProps>`
+  ${({ theme, color }) => css`
     color: ${theme.colors.black450};
     font-size: 1.4rem;
     font-weight: ${theme.font.weight.medium};
@@ -116,5 +120,17 @@ export const Text = styled.p`
       text-decoration: none;
       color: ${theme.colors.primary};
     }
+
+    ${color === 'error' && css`
+      color: ${theme.colors.secondary};
+    `}
   `}
+`
+
+export const MessageErrorWrapper = styled.div`
+  margin-bottom: .8rem;
+
+  ${Text} {
+    margin: 0
+  }
 `

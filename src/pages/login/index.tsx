@@ -15,8 +15,11 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [statusInputEmail, setStatusInputEmail] = useState<Status>('empty')
+  const [error, setError] = useState(false)
 
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    setError(false)
+
     const emailValue = e.target.value
     setEmail(emailValue)
 
@@ -51,6 +54,8 @@ const Login = () => {
     })
 
     if (response.error) {
+      setError(true)
+      setStatusInputEmail('invalid')
       return
     }
 
@@ -72,6 +77,11 @@ const Login = () => {
           <S.SubHeading>Faça login para acessar sua conta.</S.SubHeading>
 
           <S.Form onSubmit={handleSubmit}>
+            {error && (
+              <S.MessageErrorWrapper>
+                <S.Text color='error'>Falha na autenticação de login do usuário.</S.Text>
+              </S.MessageErrorWrapper>
+            )}
             <S.FormGroup>
               <label htmlFor='email'>Endereço de email:</label>
               <Input
