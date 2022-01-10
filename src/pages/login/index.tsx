@@ -15,6 +15,7 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [statusInputEmail, setStatusInputEmail] = useState<Status>('empty')
+  const [statusInputPassword, setStatusInputPassword] = useState<Status>('empty')
   const [error, setError] = useState(false)
 
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,11 +44,6 @@ const Login = () => {
   const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (statusInputEmail === 'invalid' || statusInputEmail === 'empty' || !password.length) {
-      setStatusInputEmail('invalid')
-      return
-    }
-
     const response = await login({
       email,
       password,
@@ -56,6 +52,7 @@ const Login = () => {
     if (response.error) {
       setError(true)
       setStatusInputEmail('invalid')
+      setStatusInputPassword('invalid')
       return
     }
 
@@ -105,6 +102,7 @@ const Login = () => {
                 required
                 value={password}
                 onChange={handleChangePassword}
+                status={statusInputPassword}
               />
             </S.FormGroup>
 
