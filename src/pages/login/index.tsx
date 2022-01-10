@@ -17,6 +17,7 @@ const Login = () => {
   const [statusInputEmail, setStatusInputEmail] = useState<Status>('empty')
   const [statusInputPassword, setStatusInputPassword] = useState<Status>('empty')
   const [error, setError] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setError(false)
@@ -42,6 +43,7 @@ const Login = () => {
   }
 
   const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
+    setSubmitting(true)
     e.preventDefault()
 
     const response = await login({
@@ -53,8 +55,12 @@ const Login = () => {
       setError(true)
       setStatusInputEmail('invalid')
       setStatusInputPassword('invalid')
+      setSubmitting(false)
+
       return
     }
+
+    setSubmitting(false)
 
     navigate('/app')
   }
@@ -113,8 +119,10 @@ const Login = () => {
               <a href='#test'>Esqueceu senha?</a>
             </S.RadioGroup>
 
-            <Button type='submit' fullWidth>
-              Entrar
+            <Button type='submit' fullWidth disabled={submitting}>
+              {submitting
+                ? 'Autenticando...'
+                : 'Entrar'}
             </Button>
           </S.Form>
 
