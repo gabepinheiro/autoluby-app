@@ -37,10 +37,10 @@ Primeiro abra o seu terminal e rode o seguinte comando para fazer o download do 
 
 ```bash
 # Clone este repositório
-$ git clone https://github.com/gabepinheiro/autoluby
+$ git clone https://github.com/gabepinheiro/autoluby-app
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd autoluby
+$ cd autoluby-app
 ```
 
 Rode o seguinte comando para instalar todas as dependências necessárias do projeto:
@@ -77,6 +77,6 @@ Abrir [http://localhost:3000](http://localhost:3000) com seu navegador para ver 
 - [react-router-dom](https://reactrouter.com/)
 - [localforage](https://localforage.github.io/localForage/)
 - [react-paginate](https://github.com/AdeleD/react-paginate)
-- [ngrogress](https://github.com/rstacruz/nprogress)
+- [nprogress](https://github.com/rstacruz/nprogress)
 - [eslint](https://eslint.org/)
 - [husky](https://github.com/typicode/husky)
